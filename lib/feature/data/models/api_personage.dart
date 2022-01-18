@@ -10,6 +10,7 @@ class ApiPersonage {
   static const _locationKey = 'location';
   static const _locationNameKey = 'name';
   static const _imageKey = 'image';
+  static const _episodeKey = 'episode';
 
   final int id;
   final String name;
@@ -18,6 +19,7 @@ class ApiPersonage {
   final String origin;
   final String location;
   final String image;
+  final List episode;
 
   ApiPersonage({
     @required this.id,
@@ -27,14 +29,16 @@ class ApiPersonage {
     @required this.origin,
     @required this.location,
     @required this.image,
+    @required this.episode,
   });
 
-  ApiPersonage.fromMap(Map<String, dynamic> map):
-        id = map[_idKey],
+  ApiPersonage.fromMap(Map<String, dynamic> map)
+      : id = map[_idKey],
         name = map[_nameKey],
         status = map[_statusKey],
         species = map[_speciesKey],
         origin = map[_originKey][_originNameKey],
         location = map[_locationKey][_locationNameKey],
-        image = map[_imageKey];
+        image = map[_imageKey],
+        episode = map[_episodeKey];
 }

@@ -17,11 +17,12 @@ class InfoPersonagePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Rick and Morty (MVP)'),
+          title: const Text('Rick and Morty (MVP)'),
+          backgroundColor: Colors.white12,
         ),
         backgroundColor: Colors.black,
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topLeft,
@@ -31,6 +32,7 @@ class InfoPersonagePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.center,
                 child: ClipRRect(
@@ -40,7 +42,7 @@ class InfoPersonagePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 personage.name,
                 textAlign: TextAlign.center,
@@ -50,24 +52,30 @@ class InfoPersonagePage extends StatelessWidget {
                   fontSize: 44,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.fiber_manual_record,
                     size: 17,
-                    color:  personage.status == 'Alive'? Colors.green : Colors.red,
+                    color: personage.status == 'Alive'
+                        ? Colors.green
+                        : personage.status == 'unknown'
+                        ? Colors.yellow
+                        : Colors.red,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    'Alive - Humen',
+                    '${personage.status} - ${personage.species}',
                     style: const TextStyle(
                       color: ColorsStyles.textHeaderWhite70,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  const SizedBox(width: 20),
+
                 ],
               ),
             ],

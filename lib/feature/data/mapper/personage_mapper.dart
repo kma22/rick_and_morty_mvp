@@ -11,6 +11,7 @@ class PersonageMapper {
       origin: apiModel.origin,
       location: apiModel.location,
       image: apiModel.image,
+      episode: apiModel.episode,
     );
   }
 }

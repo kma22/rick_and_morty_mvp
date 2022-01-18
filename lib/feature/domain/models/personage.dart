@@ -8,6 +8,7 @@ class Personage {
   final String origin;
   final String location;
   final String image;
+  final List<dynamic> episode;
 
   Personage({
     @required this.id,
@@ -17,5 +18,6 @@ class Personage {
     @required this.origin,
     @required this.location,
     @required this.image,
+    @required this.episode,
   });
 }
