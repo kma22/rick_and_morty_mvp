@@ -32,8 +32,9 @@ class PersonageList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               color: Colors.white24,
-              child: ListTile(
-                onTap: () {
+              child: TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => InfoPersonagePage(
@@ -41,77 +42,89 @@ class PersonageList extends StatelessWidget {
                     ),
                   );
                 },
-                leading: Image.network(
-                  state.loadedPersonage[index].image,
-                  width: 100,
-                  height: 100,
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        state.loadedPersonage[index].name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: ColorsStyles.textHeaderWhite70,
-                          fontSize: 24,
-                        ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.network(
+                        state.loadedPersonage[index].image,
+                        width: 155,
+                        height: 155,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.fiber_manual_record,
-                          size: 17,
-                          color: Colors.green,
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            'Alive - Humen',
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              state.loadedPersonage[index].name,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: ColorsStyles.textHeaderWhite70,
+                                fontSize: 22,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.fiber_manual_record,
+                                size: 17,
+                                color: state.loadedPersonage[index].status == 'Alive'? Colors.green : Colors.red,
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  'Alive - Humen',
+                                  style: const TextStyle(
+                                    color: ColorsStyles.textHeaderWhite70,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            'Origin:',
                             style: const TextStyle(
                               color: ColorsStyles.textHeaderWhite70,
-                              fontSize: 18,
+                              fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      'Origin:',
-                      style: const TextStyle(
-                        color: ColorsStyles.textHeaderWhite70,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      'Earth (C-137)',
-                      style: const TextStyle(
-                        color: ColorsStyles.textInfoPersonageWhite54,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Last known location:',
-                      style: const TextStyle(
-                        color: ColorsStyles.textHeaderWhite70,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      'Earth (Replacement Dimension)',
-                      style: const TextStyle(
-                        color: ColorsStyles.textInfoPersonageWhite54,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                          Text(
+                            state.loadedPersonage[index].origin,
+                            style: const TextStyle(
+                              color: ColorsStyles.textInfoPersonageWhite54,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Last known location:',
+                            style: const TextStyle(
+                              color: ColorsStyles.textHeaderWhite70,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            state.loadedPersonage[index].location,
+                            style: const TextStyle(
+                              color: ColorsStyles.textInfoPersonageWhite54,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
