@@ -8,7 +8,10 @@ class Personage {
   final String origin;
   final String location;
   final String image;
-  final List<dynamic> episode;
+  final String gender;
+  final String type;
+  final List<String> episode;
+  final DateTime created;
 
   Personage({
     @required this.id,
@@ -18,6 +21,9 @@ class Personage {
     @required this.origin,
     @required this.location,
     @required this.image,
+    @required this.gender,
+    @required this.type,
     @required this.episode,
+    @required this.created,
   });
 }

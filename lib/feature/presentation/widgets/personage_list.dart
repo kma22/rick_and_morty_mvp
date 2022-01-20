@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_mvp/feature/domain/models/personage.dart';
-import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc.dart';
-import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_state.dart';
+import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_bloc.dart';
+import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_state.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/pages/info_personage_page.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/styles/colors_styles.dart';
 

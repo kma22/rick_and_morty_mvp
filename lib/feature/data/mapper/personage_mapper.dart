@@ -11,7 +11,10 @@ class PersonageMapper {
       origin: apiModel.origin,
       location: apiModel.location,
       image: apiModel.image,
-      episode: apiModel.episode,
+      gender: apiModel.gender,
+      type:  apiModel.type,
+      episode: List<String>.from(apiModel.episode),
+      created: DateTime.parse(apiModel.created as String),
     );
   }
 }

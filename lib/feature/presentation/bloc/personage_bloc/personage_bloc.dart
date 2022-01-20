@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_mvp/feature/domain/models/personage.dart';
 import 'package:rick_and_morty_mvp/feature/domain/repositories/personage_repository.dart';
-import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_event.dart';
-import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_state.dart';
+import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_event.dart';
+import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_state.dart';
 
 
 class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {

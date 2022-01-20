@@ -10,7 +10,10 @@ class ApiPersonage {
   static const _locationKey = 'location';
   static const _locationNameKey = 'name';
   static const _imageKey = 'image';
+  static const _genderKey = 'gender';
+  static const _typeKey = 'type';
   static const _episodeKey = 'episode';
+  static const _createdKey = 'created';
 
   final int id;
   final String name;
@@ -19,7 +22,10 @@ class ApiPersonage {
   final String origin;
   final String location;
   final String image;
+  final String gender;
+  final String type;
   final List episode;
+  final String created;
 
   ApiPersonage({
     @required this.id,
@@ -29,7 +35,10 @@ class ApiPersonage {
     @required this.origin,
     @required this.location,
     @required this.image,
+    @required this.gender,
+    @required this.type,
     @required this.episode,
+    @required this.created,
   });
 
   ApiPersonage.fromMap(Map<String, dynamic> map)
@@ -40,5 +49,8 @@ class ApiPersonage {
         origin = map[_originKey][_originNameKey],
         location = map[_locationKey][_locationNameKey],
         image = map[_imageKey],
-        episode = map[_episodeKey];
+        gender = map[_genderKey],
+        type = map[_typeKey],
+        episode = map[_episodeKey],
+        created = map[_createdKey];
 }
