@@ -12,3 +12,5 @@ class EpisodeLoadedState extends EpisodeState {
 }
 
 class EpisodeErrorState extends EpisodeState {}
+
+class EpisodeBlocNextPageState extends EpisodeState {}

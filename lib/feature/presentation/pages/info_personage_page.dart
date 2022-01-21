@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:loadmore/loadmore.dart';
 import 'package:rick_and_morty_mvp/feature/domain/models/personage.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/styles/colors_styles.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/styles/ui_util.dart';

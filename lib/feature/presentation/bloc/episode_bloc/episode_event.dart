@@ -7,3 +7,5 @@ class EpisodeLoadEvent extends EpisodeEvent {
 
   EpisodeLoadEvent({@required this.url});
 }
+
+class EpisodeBlocNextPageEvent extends EpisodeEvent{}

@@ -6,25 +6,48 @@ import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episod
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_state.dart';
 
 class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
-
+  List<Episode> _listEpisode = [];
+  List<Episode> _newListEpisode = [];
+  List<String> urlList = [];
+  int startListUrl = 0;
+  int endListUrl = 1;
   final EpisodeRepository episodeRepository;
 
-  EpisodeBloc({@required this.episodeRepository })
+  EpisodeBloc({@required this.episodeRepository})
       : super(EpisodeLoadingState());
 
   @override
   Stream<EpisodeState> mapEventToState(EpisodeEvent event) async* {
-    if(event is EpisodeLoadEvent){
-      List<Episode> _listEpisode = [];
-      List<String> urlList = event.url;
+    if (event is EpisodeLoadEvent) {
+      urlList = event.url;
+
       yield EpisodeLoadingState();
-      try{
+      try {
         //TODO до делать динамическую загрузку списка эпизодов
-        for(int i = 0; i <= 2; i++){
-          _listEpisode.add(await episodeRepository.getEpisodeList(urlList[i]));
+        for (startListUrl; startListUrl < urlList.length; startListUrl++) {
+          _listEpisode.add(
+              await episodeRepository.getEpisodeList(urlList[startListUrl]));
         }
         yield EpisodeLoadedState(episodes: _listEpisode);
-      } catch(e){
+      } catch (e) {
+        print(e);
+        yield EpisodeErrorState();
+      }
+    } else if (event is EpisodeBlocNextPageEvent) {
+      startListUrl = endListUrl;
+      endListUrl += 2;
+      if (endListUrl > urlList.length) {
+        endListUrl = urlList.length;
+      }
+      yield EpisodeBlocNextPageState();
+      try {
+        for (startListUrl; startListUrl < endListUrl; startListUrl++) {
+          _newListEpisode.add(
+              await episodeRepository.getEpisodeList(urlList[startListUrl]));
+        }
+        _listEpisode.addAll(_newListEpisode);
+        yield EpisodeLoadedState(episodes: _listEpisode);
+      } catch (e) {
         print(e);
         yield EpisodeErrorState();
       }
