@@ -1,18 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loadmore/loadmore.dart';
 import 'package:rick_and_morty_mvp/feature/domain/models/personage.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_bloc.dart';
+import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_event.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/personage_state.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/pages/info_personage_page.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/styles/colors_styles.dart';
 
-class PersonageList extends StatelessWidget {
-  const PersonageList({Key key}) : super(key: key);
+class PersonageList extends StatefulWidget {
+  PersonageList({Key key}) : super(key: key);
+
+  @override
+  State<PersonageList> createState() => _PersonageListState();
+}
+
+class _PersonageListState extends State<PersonageList> {
+  PersonageBloc _bloc;
+
+  @override
+  void initState() {
+    _bloc = BlocProvider.of(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PersonageBloc, PersonageState>(
+    return BlocBuilder(
+        cubit: _bloc,
+        buildWhen: (_, state) => state is! PersonageBlocNextPageState,
         builder: (context, state) {
           if (state is PersonageLoadingState) {
             return const Center(
@@ -24,22 +41,31 @@ class PersonageList extends StatelessWidget {
                 child: Text('The data is not loaded. Press button "Load".'),
               );
             } else {
-              return ListView.builder(
-                itemCount: state.loadedPersonage.length,
-                itemBuilder: (context, index) =>
-                    CardInfoPersonage(personage: state.loadedPersonage[index]),
+              return LoadMore(
+                isFinish: state.loadedPersonage.length >= 826,
+                onLoadMore: () async {
+                  _bloc.add(PersonageBlocNextPageEvent());
+                  await Future.delayed(Duration(seconds: 1));
+                  return true;
+                },
+                child: ListView.builder(
+                  itemCount: state.loadedPersonage.length,
+                  itemBuilder: (context, index) => CardInfoPersonage(
+                      personage: state.loadedPersonage[index]),
+                ),
               );
             }
           }
           return const SizedBox();
-    });
+        });
   }
 }
 
 class CardInfoPersonage extends StatelessWidget {
   final Personage personage;
 
-  const CardInfoPersonage({Key key, @required this.personage}) : super(key: key);
+  const CardInfoPersonage({Key key, @required this.personage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

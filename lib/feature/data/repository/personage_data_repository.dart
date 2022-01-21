@@ -10,8 +10,8 @@ class PersonageDataRepository implements PersonageRepository {
   PersonageDataRepository(this._restService);
 
   @override
-  Future<List<Personage>> getPersonageList() async {
-    final result = await _restService.getPersonage();
+  Future<List<Personage>> getPersonageList(int page) async {
+    final result = await _restService.getPersonage(page);
     List<Personage> personageList = [];
     for (var map in result) {
       personageList.add(PersonageMapper.fromApi(ApiPersonage.fromMap(map)));

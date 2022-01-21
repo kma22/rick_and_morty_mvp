@@ -9,7 +9,6 @@ import 'package:rick_and_morty_mvp/feature/presentation/widgets/personage_list.d
 class HomePage extends StatelessWidget {
 
   final personageRepository = PersonageDataRepository(RestService());
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -19,8 +19,9 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
       List<String> urlList = event.url;
       yield EpisodeLoadingState();
       try{
-        for(var url in urlList){
-          _listEpisode.add(await episodeRepository.getEpisodeList(url));
+        //TODO до делать динамическую загрузку списка эпизодов
+        for(int i = 0; i <= 2; i++){
+          _listEpisode.add(await episodeRepository.getEpisodeList(urlList[i]));
         }
         yield EpisodeLoadedState(episodes: _listEpisode);
       } catch(e){

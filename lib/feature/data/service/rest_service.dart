@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:rick_and_morty_mvp/feature/domain/models/episode.dart';
 
 class RestService {
-  Future<List> getPersonage() async {
+  Future<List> getPersonage(int page) async {
     final responsePersonage =
-        await http.get('https://rickandmortyapi.com/api/character');
+        await http.get('https://rickandmortyapi.com/api/character/?page=${page}');
     if (responsePersonage.statusCode == 200) {
       final body = json.decode(responsePersonage.body);
       return body['results'];

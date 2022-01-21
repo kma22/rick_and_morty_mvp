@@ -9,3 +9,4 @@ class PersonageSearchEvent extends PersonageEvent{
   String text;
   PersonageSearchEvent({@required this.text});
 }
+class PersonageBlocNextPageEvent extends PersonageEvent{}

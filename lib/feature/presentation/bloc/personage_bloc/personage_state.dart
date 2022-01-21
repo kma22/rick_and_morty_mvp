@@ -12,3 +12,5 @@ class PersonageLoadedState extends PersonageState {
 }
 
 class PersonageErrorState extends PersonageState {}
+
+class PersonageBlocNextPageState extends PersonageState {}

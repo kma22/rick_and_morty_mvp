@@ -18,8 +18,7 @@ class InfoEpisode extends StatefulWidget {
 }
 
 class _InfoEpisodeState extends State<InfoEpisode> {
-  final bloc =
-      EpisodeBloc(episodeRepository: EpisodeDataRepository(RestService()));
+  EpisodeBloc bloc = EpisodeBloc(episodeRepository: EpisodeDataRepository(RestService()));
 
   @override
   void initState() {

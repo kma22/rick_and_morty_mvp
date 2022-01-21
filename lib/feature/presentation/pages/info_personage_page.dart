@@ -9,6 +9,7 @@ import 'package:rick_and_morty_mvp/feature/presentation/widgets/info_episode.dar
 
 class InfoPersonagePage extends StatelessWidget {
   final Personage personage;
+
   InfoPersonagePage({Key key, @required this.personage}) : super(key: key);
 
   @override
@@ -82,129 +83,20 @@ class InfoPersonagePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15, right:  15),
+                  padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Gender: ',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              personage.gender,
-                              style: const TextStyle(
-                                color: ColorsStyles.textInfoPersonageWhite54,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ...buildText('Gender: ', personage.gender),
                       const SizedBox(height: 5),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Type: ',
-                            style:  TextStyle(
-                              color: Colors.white70,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              personage.type,
-                              style: const TextStyle(
-                                color: ColorsStyles.textInfoPersonageWhite54,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ...buildText('Type: ', personage.type),
                       const SizedBox(height: 5),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Origin: ',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              personage.origin,
-                              style: const TextStyle(
-                                color: ColorsStyles.textInfoPersonageWhite54,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ...buildText('Origin: ', personage.origin),
                       const SizedBox(height: 5),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Last known location: ',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              personage.location,
-                              style: const TextStyle(
-                                color: ColorsStyles.textInfoPersonageWhite54,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ...buildText('Last known location: ', personage.location),
                       const SizedBox(height: 5),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Date of creation: ',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              DateTransformation(personage.created),
-                              style: const TextStyle(
-                                color: ColorsStyles.textInfoPersonageWhite54,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ...buildText('Date of creation: ',
+                          DateTransformation(personage.created)),
                       const SizedBox(height: 5),
                       const Text(
                         'The character is found in:',
@@ -226,6 +118,36 @@ class InfoPersonagePage extends StatelessWidget {
       ),
     );
   }
+
+  List<Widget> buildText(String text, String valu) {
+    return [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 21,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              valu,
+              //DateTransformation(personage.created),
+              style: const TextStyle(
+                color: ColorsStyles.textInfoPersonageWhite54,
+                fontSize: 19,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ];
+  }
+
   String DateTransformation(DateTime date) {
     String result;
     switch (date.month) {
@@ -268,4 +190,33 @@ class InfoPersonagePage extends StatelessWidget {
     }
     return result;
   }
+}
+
+List<Widget> buildText(String text, String valu) {
+  return [
+    Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 21,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            valu,
+            //DateTransformation(personage.created),
+            style: const TextStyle(
+              color: ColorsStyles.textInfoPersonageWhite54,
+              fontSize: 19,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
+    ),
+  ];
 }
