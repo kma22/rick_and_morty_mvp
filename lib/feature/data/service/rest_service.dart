@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:rick_and_morty_mvp/feature/domain/models/episode.dart';
 
 class RestService {
-  Future<List> getPersonage(int page) async {
-    final responsePersonage =
-        await http.get('https://rickandmortyapi.com/api/character/?page=${page}');
+  Future<List> getPersonage(int page, {String name}) async {
+    String url = 'https://rickandmortyapi.com/api/character/?page=${page}';
+    if (name != null) {
+      url += '&name=$name';
+    }
+    print(url);
+    final responsePersonage = await http.get(url);
     if (responsePersonage.statusCode == 200) {
       final body = json.decode(responsePersonage.body);
       return body['results'];

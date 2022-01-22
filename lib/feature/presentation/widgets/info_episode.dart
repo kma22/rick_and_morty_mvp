@@ -19,18 +19,21 @@ class InfoEpisode extends StatefulWidget {
 }
 
 class _InfoEpisodeState extends State<InfoEpisode> {
-  EpisodeBloc bloc = EpisodeBloc(episodeRepository: EpisodeDataRepository(RestService()));
+
+  EpisodeBloc _bloc;
 
   @override
   void initState() {
-    bloc.add(EpisodeLoadEvent(url: widget.url));
+    _bloc = BlocProvider.of<EpisodeBloc>(context);
+    _bloc.add(EpisodeLoadEvent(url: widget.url));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-        cubit: bloc,
+        buildWhen: (_, state) => state is! EpisodeBlocNextPageState,
+        cubit: _bloc,
         builder: (context, state) {
           if (state is EpisodeLoadingState) {
             return const Center(
@@ -124,7 +127,9 @@ class _InfoEpisodeState extends State<InfoEpisode> {
                 ),
               );
             }
+
           }
+          return SizedBox();
         });
   }
 }

@@ -24,7 +24,7 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
       yield EpisodeLoadingState();
       try {
         //TODO до делать динамическую загрузку списка эпизодов
-        for (startListUrl; startListUrl < urlList.length; startListUrl++) {
+        for (startListUrl; startListUrl < endListUrl; startListUrl++) {
           _listEpisode.add(
               await episodeRepository.getEpisodeList(urlList[startListUrl]));
         }
@@ -34,6 +34,7 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
         yield EpisodeErrorState();
       }
     } else if (event is EpisodeBlocNextPageEvent) {
+      _newListEpisode = [];
       startListUrl = endListUrl;
       endListUrl += 2;
       if (endListUrl > urlList.length) {

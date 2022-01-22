@@ -9,8 +9,8 @@ import 'package:rick_and_morty_mvp/feature/presentation/bloc/personage_bloc/pers
 class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
   List<Personage> _loadedPersonageList = [];
   List<Personage> _newLoadedPersonageList = [];
-  int page = 1;
-
+  int _page = 1;
+  String _name;
   final PersonageRepository personageRepository ;
 
   PersonageBloc({@required this.personageRepository})
@@ -20,11 +20,12 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
 
   @override
   Stream<PersonageState> mapEventToState(PersonageEvent event) async* {
-
     if (event is PersonageLoadEvent) {
+      _name = event.name ?? '';
+      _name = _name.trim() == '' ? null : _name.trim();
       yield PersonageLoadingState();
       try {
-        _loadedPersonageList = await personageRepository.getPersonageList(1);
+        _loadedPersonageList = await personageRepository.getPersonageList(1, name: _name);
         yield PersonageLoadedState(loadedPersonage: _loadedPersonageList);
       } catch (e) {
         print(e);
@@ -32,9 +33,9 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
       }
     } else if( event is PersonageBlocNextPageEvent){
       yield PersonageBlocNextPageState();
-      page++;
+      _page++;
       try {
-        _newLoadedPersonageList = await personageRepository.getPersonageList(page);
+        _newLoadedPersonageList = await personageRepository.getPersonageList(_page, name: _name);
         _loadedPersonageList.addAll(_newLoadedPersonageList);
         yield PersonageLoadedState(loadedPersonage: _loadedPersonageList);
       } catch (e) {
