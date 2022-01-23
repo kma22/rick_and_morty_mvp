@@ -5,10 +5,13 @@ abstract class PersonageState {}
 class PersonageLoadingState extends PersonageState {}
 
 class PersonageLoadedState extends PersonageState {
-  List<dynamic> loadedPersonage;
+  final List<dynamic> loadedPersonage;
+  final int totalCount;
 
-  PersonageLoadedState({@required this.loadedPersonage})
-      : assert(loadedPersonage != null);
+  PersonageLoadedState({
+    @required this.loadedPersonage,
+    @required this.totalCount,
+  });
 }
 
 class PersonageErrorState extends PersonageState {}

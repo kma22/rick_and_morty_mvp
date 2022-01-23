@@ -27,20 +27,6 @@ class ApiPersonage {
   final List episode;
   final String created;
 
-  ApiPersonage({
-    @required this.id,
-    @required this.name,
-    @required this.status,
-    @required this.species,
-    @required this.origin,
-    @required this.location,
-    @required this.image,
-    @required this.gender,
-    @required this.type,
-    @required this.episode,
-    @required this.created,
-  });
-
   ApiPersonage.fromMap(Map<String, dynamic> map)
       : id = map[_idKey],
         name = map[_nameKey],

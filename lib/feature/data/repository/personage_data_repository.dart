@@ -1,7 +1,10 @@
 import 'package:rick_and_morty_mvp/feature/data/mapper/personage_mapper.dart';
+import 'package:rick_and_morty_mvp/feature/data/mapper/personage_search_results_mapper.dart';
 import 'package:rick_and_morty_mvp/feature/data/models/api_personage.dart';
+import 'package:rick_and_morty_mvp/feature/data/models/api_personage_search_result.dart';
 import 'package:rick_and_morty_mvp/feature/data/service/rest_service.dart';
 import 'package:rick_and_morty_mvp/feature/domain/models/personage.dart';
+import 'package:rick_and_morty_mvp/feature/domain/models/personage_search_result.dart';
 import 'package:rick_and_morty_mvp/feature/domain/repositories/personage_repository.dart';
 
 class PersonageDataRepository implements PersonageRepository {
@@ -10,12 +13,9 @@ class PersonageDataRepository implements PersonageRepository {
   PersonageDataRepository(this._restService);
 
   @override
-  Future<List<Personage>> getPersonageList(int page, {String name}) async {
+  Future<PersonageSearchResult> getPersonageList(int page, {String name}) async {
     final result = await _restService.getPersonage(page, name: name);
-    List<Personage> personageList = [];
-    for (var map in result) {
-      personageList.add(PersonageMapper.fromApi(ApiPersonage.fromMap(map)));
-    }
-    return personageList;
+
+    return PersonageSearchResultMapper.fromApi(ApiPersonageSearchResult.fromMap(result));
   }
 }

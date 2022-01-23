@@ -7,11 +7,6 @@ class ApiEpisode {
   final String airData;
   final String episode;
 
-  ApiEpisode({
-    this.name,
-    this.airData,
-    this.episode,
-  });
 
   ApiEpisode.fromMap(Map<String, dynamic> map)
       : name = map[_nameKey],

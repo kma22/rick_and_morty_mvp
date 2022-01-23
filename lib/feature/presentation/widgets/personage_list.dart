@@ -42,7 +42,7 @@ class _PersonageListState extends State<PersonageList> {
               );
             } else {
               return LoadMore(
-                isFinish: state.loadedPersonage.length >= 826,
+                isFinish: state.loadedPersonage.length >= state.totalCount,
                 onLoadMore: () async {
                   _bloc.add(PersonageBlocNextPageEvent());
                   await Future.delayed(Duration(seconds: 1));
@@ -93,6 +93,20 @@ class CardInfoPersonage extends StatelessWidget {
                 personage.image,
                 width: 155,
                 height: 155,
+                loadingBuilder: (context, child, progress) => progress == null
+                    ? child
+                    : Image.asset(
+                        'assets/images/loading_error_image.jpeg',
+                        width: 155,
+                        height: 155,
+                      ),
+                errorBuilder: (BuildContext context, Object exception,
+                        StackTrace stackTrace) =>
+                    Image.asset(
+                  'assets/image/loading_error_image.jpeg',
+                  width: 155,
+                  height: 155,
+                ),
               ),
             ),
             const SizedBox(width: 10),
