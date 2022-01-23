@@ -11,20 +11,19 @@ import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episod
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_event.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_state.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/styles/colors_styles.dart';
-import 'package:rick_and_morty_mvp/feature/presentation/styles/ui_util.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/widgets/info_episode.dart';
 
 class InfoPersonagePage extends StatefulWidget {
   final Personage personage;
 
-  InfoPersonagePage({Key key, @required this.personage}) : super(key: key);
+  const InfoPersonagePage({Key key, @required this.personage}) : super(key: key);
 
   @override
   State<InfoPersonagePage> createState() => _InfoPersonagePageState();
 }
 
 class _InfoPersonagePageState extends State<InfoPersonagePage> {
-  EpisodeBloc _bloc =
+  final EpisodeBloc _bloc =
       EpisodeBloc(episodeRepository: EpisodeDataRepository(RestService()));
 
   @override
@@ -58,7 +57,7 @@ class _InfoPersonagePageState extends State<InfoPersonagePage> {
                   isFinish: isFinish,
                   onLoadMore: () async {
                     _bloc.add(EpisodeBlocNextPageEvent());
-                    await Future.delayed(Duration(seconds: 1));
+                    await Future.delayed(const Duration(seconds: 1));
                     return true;
                   },
                   child: ListView.builder(

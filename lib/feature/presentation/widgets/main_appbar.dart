@@ -24,7 +24,7 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
       height: 60.0,
       color: Colors.white12,
       child: AnimatedSwitcher(
@@ -40,7 +40,7 @@ class _MainAppBarState extends State<MainAppBar> {
                         _showSearch = false;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: ColorsStyles.appBarColorWhite87,
                     ),
@@ -48,7 +48,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   Expanded(
                     child: TextField(
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: ColorsStyles.appBarColorWhite87),
+                      style: const TextStyle(color: ColorsStyles.appBarColorWhite87),
                       onSubmitted: (text) {
                         _bloc.add(PersonageLoadEvent(name: text));
                       },
@@ -77,7 +77,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 children: [
                   Expanded(
                     child: Row(
-                      children: [
+                      children: const [
                         Spacer(
                           flex: 2,
                         ),
@@ -100,7 +100,7 @@ class _MainAppBarState extends State<MainAppBar> {
                         _showSearch = true;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.search_rounded,
                       color: ColorsStyles.appBarColorWhite87,
                     ),

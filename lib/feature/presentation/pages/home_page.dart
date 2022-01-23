@@ -9,6 +9,8 @@ import 'package:rick_and_morty_mvp/feature/presentation/widgets/personage_list.d
 class HomePage extends StatelessWidget {
 
   final personageRepository = PersonageDataRepository(RestService());
+
+  HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -18,8 +20,8 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.black,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const MainAppBar(),
+            children: const [
+              MainAppBar(),
               Expanded(child: PersonageList()),
             ],
           ),

@@ -6,7 +6,7 @@ import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episod
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_state.dart';
 
 class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
-  List<Episode> _listEpisode = [];
+  final List<Episode> _listEpisode = [];
   List<Episode> _newListEpisode = [];
   List<String> urlList = [];
   int startListUrl = 0;
@@ -23,14 +23,12 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
 
       yield EpisodeLoadingState();
       try {
-        //TODO до делать динамическую загрузку списка эпизодов
         for (startListUrl; startListUrl < endListUrl; startListUrl++) {
           _listEpisode.add(
               await episodeRepository.getEpisodeList(urlList[startListUrl]));
         }
         yield EpisodeLoadedState(episodes: _listEpisode);
       } catch (e) {
-        print(e);
         yield EpisodeErrorState();
       }
     } else if (event is EpisodeBlocNextPageEvent) {
@@ -49,7 +47,6 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
         _listEpisode.addAll(_newListEpisode);
         yield EpisodeLoadedState(episodes: _listEpisode);
       } catch (e) {
-        print(e);
         yield EpisodeErrorState();
       }
     }

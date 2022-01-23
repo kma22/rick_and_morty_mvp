@@ -34,7 +34,6 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
           totalCount: result.count,
         );
       } catch (e) {
-        print(e);
         yield PersonageErrorState();
       }
     } else if (event is PersonageBlocNextPageEvent) {
@@ -51,7 +50,6 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
             totalCount: result.count,
           );
         } catch (e) {
-          print(e);
           yield PersonageErrorState();
         }
       }

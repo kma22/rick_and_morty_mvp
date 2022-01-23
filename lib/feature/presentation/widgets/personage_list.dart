@@ -10,7 +10,7 @@ import 'package:rick_and_morty_mvp/feature/presentation/pages/info_personage_pag
 import 'package:rick_and_morty_mvp/feature/presentation/styles/colors_styles.dart';
 
 class PersonageList extends StatefulWidget {
-  PersonageList({Key key}) : super(key: key);
+  const PersonageList({Key key}) : super(key: key);
 
   @override
   State<PersonageList> createState() => _PersonageListState();
@@ -45,7 +45,7 @@ class _PersonageListState extends State<PersonageList> {
                 isFinish: state.loadedPersonage.length >= state.totalCount,
                 onLoadMore: () async {
                   _bloc.add(PersonageBlocNextPageEvent());
-                  await Future.delayed(Duration(seconds: 1));
+                  await Future.delayed(const Duration(seconds: 1));
                   return true;
                 },
                 child: ListView.builder(

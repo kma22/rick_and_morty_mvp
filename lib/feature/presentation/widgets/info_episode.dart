@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loadmore/loadmore.dart';
-import 'package:rick_and_morty_mvp/feature/data/repository/episode_data_repository.dart';
-import 'package:rick_and_morty_mvp/feature/data/service/rest_service.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_bloc.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_event.dart';
 import 'package:rick_and_morty_mvp/feature/presentation/bloc/episode_bloc/episode_state.dart';
@@ -45,7 +42,6 @@ class _InfoEpisodeState extends State<InfoEpisode> {
                 child: Text('The data is not loaded. Press button "Load".'),
               );
             } else {
-              //TODO LoadMore
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
